@@ -2,872 +2,492 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vedant Singh — Full-stack developer</title>
+    <meta
+      name="description"
+      content="Vedant Singh is a full-stack developer in Bengaluru building cross-platform Flutter apps, Golang and Spring Boot microservices, and AI-integrated systems."
+    />
+    <meta name="author" content="Vedant Singh" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0c0b0a" />
+    <link rel="canonical" href="https://singhvedant.github.io/" />
 
-    <title>Vedant Singh</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://singhvedant.github.io/" />
+    <meta property="og:title" content="Vedant Singh — Full-stack developer" />
+    <meta
+      property="og:description"
+      content="Cross-platform apps, the microservices behind them, and AI-integrated systems."
+    />
+    <meta property="og:image" content="https://singhvedant.github.io/assets/img/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Favicons -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="assets/img/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/img/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/img/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
 
-    <!-- Vendor CSS Files -->
-    <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      href="assets/vendor/glightbox/css/glightbox.min.css"
-      rel="stylesheet"
-    />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <script>
+      // Set theme before first paint so there is no flash.
+      (function () {
+        var d = document.documentElement;
+        d.classList.add("js");
+        var t = null;
+        try { t = localStorage.getItem("theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        d.dataset.theme = t;
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/css/site.css" />
   </head>
 
   <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top">
-      <div class="container d-flex align-items-center justify-content-between">
-        <h1 class="logo">
-          <a href="index.html" class="logo"
-            ><img src="assets/img/logo.png.gif" alt="" class="img-fluid"
-          /></a>
-        </h1>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<a href="index.html">DevFolio</a> -->
+    <a class="skip" href="#main">Skip to content</a>
 
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#skills">Skills</a></li>
-            <li><a class="nav-link scrollto" href="#work">Work</a></li>
-            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-        <!-- .navbar -->
+    <header class="top" id="top">
+      <a class="brand" href="#hero" aria-label="Vedant Singh, home">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span class="brand-name">Vedant Singh</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#work">Work</a>
+        <a href="#path">Path</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="top-actions">
+        <button class="chip-btn" id="open-palette" type="button" aria-haspopup="dialog">
+          <span class="chip-label-wide">Jump to</span><span class="chip-label-narrow">Menu</span>
+          <kbd id="palette-kbd">Ctrl K</kbd>
+        </button>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <path d="M12 7a5 5 0 0 0 0 10z" fill="currentColor" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
       </div>
     </header>
-    <!-- End Header -->
-
-    <!-- ======= Hero Section ======= -->
-<div
-  id="hero"
-  class="hero route bg-image"
-  style="background-image: url(assets/img/hiro-ai-bg.png); height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;"
->
-  <div class="overlay-itro" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-  <div class="hero-content" style="position: relative; z-index: 2;">
-    <div class="container">
-      <p class="display-6 color-d">Hello, world!</p>
-      <h1 class="hero-title mb-4">I am Vedant</h1>
-      <p class="hero-subtitle">
-        <span
-          class="typed"
-          data-typed-items="Flutter, Golang, Spring Boot, AI Integrator, Full-Stack Developer, Software Developer, Innovator"
-        ></span>
-      </p>
-    </div>
-  </div>
-</div>
-<!-- End Hero Section -->
-
 
     <main id="main">
-      <!-- ======= About Section ======= -->
-      <section id="about" class="about-mf sect-pt4 route">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="box-shadow-full">
-                <div class="row">
-                  <!-- Left Column: Personal Info & Skills -->
-                  <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-sm-6 col-md-5">
-                        <div class="about-img">
-                          <img
-                            src="assets/img/vedant-profile.JPG"
-                            class="img-fluid rounded b-shadow-a"
-                            alt="Vedant Singh"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-7">
-                        <div class="about-info">
-                          <p>
-                            <span class="title-s">Name: </span>
-                            <span>Vedant Singh</span>
-                          </p>
-                          <p>
-                            <span class="title-s">Profile: </span>
-                            <span>Full Stack Developer</span>
-                          </p>
-                          <p>
-                            <span class="title-s">Email: </span>
-                            <span>singhvedant1701@gmail.com</span>
-                          </p>
-                          <p>
-                            <span class="title-s">Phone: </span>
-                            <span>(+91) 96940 18045</span>
-                          </p>
-                          <p>
-                            <span class="title-s">Location: </span>
-                            <span>Bengaluru, India</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="skill-mf">
-                      <p class="title-s">Technical Skills</p>
+      <!-- ───────────── Hero ───────────── -->
+      <section class="hero" id="hero">
+        <canvas id="aurora" aria-hidden="true"></canvas>
+        <div class="hero-grain" aria-hidden="true"></div>
 
-                      <span>Flutter</span> <span class="pull-right">90%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 90%"
-                          aria-valuenow="90"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
+        <div class="hero-inner wrap">
+          <p class="eyebrow hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Full-stack developer
+            <span class="sep" aria-hidden="true">/</span>
+            Bengaluru, India
+            <span class="sep" aria-hidden="true">/</span>
+            <span id="local-time">IST</span>
+          </p>
 
-                      <span>Golang</span> <span class="pull-right">85%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 85%"
-                          aria-valuenow="85"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
+          <h1 class="hero-name" aria-label="Vedant Singh">
+            <span class="line" aria-hidden="true"><span class="rise">Vedant</span></span>
+            <span class="line line-serif" aria-hidden="true"><span class="rise">Singh</span></span>
+          </h1>
 
-                      <span>Spring Boot (Java)</span>
-                      <span class="pull-right">80%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 80%"
-                          aria-valuenow="80"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-
-                      <span>Python</span> <span class="pull-right">90%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 90%"
-                          aria-valuenow="90"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-
-                      <span>Dart</span> <span class="pull-right">80%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 80%"
-                          aria-valuenow="80"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-
-                      <span>JavaScript / ReactJS</span>
-                      <span class="pull-right">75%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 75%"
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-
-                      <span>C / C++</span> <span class="pull-right">60%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 60%"
-                          aria-valuenow="60"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-
-                      <span>Kotlin</span> <span class="pull-right">75%</span>
-                      <div class="progress">
-                        <div
-                          class="progress-bar"
-                          role="progressbar"
-                          style="width: 75%"
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Right Column: Bio -->
-                  <div class="col-md-6">
-                    <div class="about-me pt-4 pt-md-0">
-                      <div class="title-box-2">
-                        <h5 class="title-left">About Me</h5>
-                      </div>
-                      <p class="lead">
-                        I'm a full-stack developer currently working at AU Small
-                        Finance Bank. I specialize in building cross-platform
-                        applications using Flutter and Dart, scalable
-                        microservices using Golang and Spring Boot, and
-                        integrating modern tech like Zoom SDK and Firebase into
-                        real-world systems.
-                      </p>
-                      <p class="lead">
-                        I've led full-stack mobile app development, co-founded a
-                        startup (AtomDrop), and worked on AI-integrated projects
-                        like real-time digital twins and 3D virtual assistants.
-                        I'm passionate about innovation, and I enjoy crafting
-                        experiences that bridge design, logic, and user impact.
-                      </p>
-                      <p class="lead">
-                        I'm also a past intern at Fidelity Investments and
-                        Samsung PRISM, and have earned awards like Tech Titans
-                        Rising Star and World of AR/VR Expo Champion.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          <div class="hero-foot">
+            <p class="hero-lede">
+              I build cross-platform apps, the microservices behind them, and
+              the AI that plugs into both. Currently at
+              <strong>AU Small Finance Bank</strong>.
+            </p>
+            <div class="hero-side">
+              <p class="rotator" aria-hidden="true">
+                <span class="rotator-prompt">~/vedant $</span>
+                <span id="rotator-text">Flutter</span><span class="caret"></span>
+              </p>
+              <div class="cta-row">
+                <a class="btn btn-solid" href="#work">
+                  See the work
+                  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </a>
+                <a class="btn btn-ghost" href="#contact">Get in touch</a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- End About Section -->
 
-      <!-- ======= Skills Section ======= -->
-      <section id="skills" class="skills-mf pt-5 route">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="title-box text-center">
-                <h3 class="title-a">Skills</h3>
-                <p class="subtitle-a">
-                  Technologies, frameworks, and tools I work with across the
-                  stack.
-                </p>
-                <div class="line-mf"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Flutter -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"><i class="bi bi-phone"></i></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">Flutter App Development</h2>
-                  <p class="s-description text-center">
-                    Developed multiple cross-platform apps with Firebase
-                    integration and production-grade UI/UX using Flutter and
-                    Dart.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Golang -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"><i class="bi bi-cpu"></i></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">Golang Microservices</h2>
-                  <p class="s-description text-center">
-                    Built scalable microservices for backend architecture with a
-                    focus on performance, maintainability, and containerization.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Spring Boot -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"><i class="bi bi-terminal"></i></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">Spring Boot (JPA & WebFlux)</h2>
-                  <p class="s-description text-center">
-                    Delivered reactive and RESTful Java services with WebFlux
-                    and JPA, deployed with Docker and Kubernetes in enterprise
-                    settings.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- AI/GenAI -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"><i class="bi bi-robot"></i></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">AI & Generative AI</h2>
-                  <p class="s-description text-center">
-                    Integrated LLMs and built GenAI-powered data analysis tools
-                    for intelligent business insight extraction and automation
-                    workflows.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Frontend/React -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"
-                    ><i class="bi bi-window-sidebar"></i
-                  ></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">Frontend & React</h2>
-                  <p class="s-description text-center">
-                    Proficient in building dynamic, responsive UIs using ReactJS
-                    and modern JavaScript frameworks for web applications.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- IoT & Embedded -->
-            <div class="col-md-4">
-              <div class="service-box">
-                <div class="service-ico">
-                  <span class="ico-circle"
-                    ><i class="bi bi-bluetooth"></i
-                  ></span>
-                </div>
-                <div class="service-content">
-                  <h2 class="s-title">IoT & Hardware Integration</h2>
-                  <p class="s-description text-center">
-                    Developed IoT prototypes using Raspberry Pi and Arduino with
-                    real-time data pipelines, automation, and control
-                    interfaces.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Skills Section -->
-
-      <!-- ======= Stats Section ======= -->
-      <div
-        class="section-counter paralax-mf bg-image"
-        style="background-image: url(assets/img/counters-bg.jpg)"
-      >
-        <div class="overlay-mf"></div>
-        <div class="container position-relative">
-          <div class="row">
-            <div class="col-sm-3 col-lg-3">
-              <div class="counter-box pt-4 pt-md-0">
-                <div class="counter-ico">
-                  <span class="ico-circle"><i class="bi bi-laptop"></i></span>
-                </div>
-                <div class="counter-num">
-                  <p
-                    data-purecounter-start="0"
-                    data-purecounter-end="12"
-                    data-purecounter-duration="1"
-                    class="counter purecounter"
-                  ></p>
-                  <span class="counter-text">PROJECTS BUILT</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-3 col-lg-3">
-              <div class="counter-box pt-4 pt-md-0">
-                <div class="counter-ico">
-                  <span class="ico-circle"
-                    ><i class="bi bi-code-slash"></i
-                  ></span>
-                </div>
-                <div class="counter-num">
-                  <p
-                    data-purecounter-start="0"
-                    data-purecounter-end="7"
-                    data-purecounter-duration="1"
-                    class="counter purecounter"
-                  ></p>
-                  <span class="counter-text">TECH STACKS MASTERED</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-3 col-lg-3">
-              <div class="counter-box pt-4 pt-md-0">
-                <div class="counter-ico">
-                  <span class="ico-circle"><i class="bi bi-award"></i></span>
-                </div>
-                <div class="counter-num">
-                  <p
-                    data-purecounter-start="0"
-                    data-purecounter-end="6"
-                    data-purecounter-duration="1"
-                    class="counter purecounter"
-                  ></p>
-                  <span class="counter-text">AWARDS & CERTIFICATIONS</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-3 col-lg-3">
-              <div class="counter-box pt-4 pt-md-0">
-                <div class="counter-ico">
-                  <span class="ico-circle"
-                    ><i class="bi bi-person-workspace"></i
-                  ></span>
-                </div>
-                <div class="counter-num">
-                  <p
-                    data-purecounter-start="0"
-                    data-purecounter-end="3"
-                    data-purecounter-duration="1"
-                    class="counter purecounter"
-                  ></p>
-                  <span class="counter-text">YEARS OF EXPERIENCE</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- ───────────── Marquee ───────────── -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Flutter</span><i>✳</i><span>Golang</span><i>✳</i><span>Spring Boot</span><i>✳</i><span>Python</span><i>✳</i><span>Dart</span><i>✳</i><span>ReactJS</span><i>✳</i><span>Kotlin</span><i>✳</i><span>Firebase</span><i>✳</i><span>Docker</span><i>✳</i><span>Kubernetes</span><i>✳</i><span>GenAI</span><i>✳</i><span>Unreal Engine</span><i>✳</i><span>Raspberry Pi</span><i>✳</i>
+          <span>Flutter</span><i>✳</i><span>Golang</span><i>✳</i><span>Spring Boot</span><i>✳</i><span>Python</span><i>✳</i><span>Dart</span><i>✳</i><span>ReactJS</span><i>✳</i><span>Kotlin</span><i>✳</i><span>Firebase</span><i>✳</i><span>Docker</span><i>✳</i><span>Kubernetes</span><i>✳</i><span>GenAI</span><i>✳</i><span>Unreal Engine</span><i>✳</i><span>Raspberry Pi</span><i>✳</i>
         </div>
       </div>
-      <!-- End Stats Section -->
 
-      <!-- ======= Portfolio Section ======= -->
-      <section id="work" class="portfolio-mf sect-pt4 route">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="title-box text-center">
-                <h3 class="title-a">Projects</h3>
-                <p class="subtitle-a">
-                  A few impactful and innovative projects I've built and led.
-                </p>
-                <div class="line-mf"></div>
-              </div>
-            </div>
-          </div>
+      <!-- ───────────── About ───────────── -->
+      <section class="section wrap" id="about">
+        <header class="section-head reveal">
+          <p class="eyebrow"><span class="num">01</span> About</p>
+        </header>
 
-          <div class="row">
-            <!-- Project Card Template -->
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3">
-                  <i class="bi bi-phone-fill"></i>
-                </div>
-                <h2 class="w-title">NCACCH Connect</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">Flutter + Firebase</span> /
-                  <span class="w-date">2023</span>
-                </div>
-                <p>
-                  Cloud-based Android/iOS app for NCACCH Australia with
-                  real-time reporting, data integration, and Firebase backend.
-                </p>
-              </div>
-            </div>
+        <div class="about-grid">
+          <figure class="portrait reveal">
+            <img
+              src="assets/img/vedant-portrait.webp"
+              width="880"
+              height="1100"
+              alt="Vedant Singh, in a navy blazer, standing outdoors"
+              loading="lazy"
+            />
+            <figcaption>
+              <span>Vedant Singh</span>
+              <span>Bengaluru, IN</span>
+            </figcaption>
+          </figure>
 
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3"><i class="bi bi-cpu-fill"></i></div>
-                <h2 class="w-title">Digital Twin Simulator</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">AI + IoT</span> /
-                  <span class="w-date">2024</span>
-                </div>
-                <p>
-                  Real-time factory simulation using sensor data controlled by
-                  an AI agent, visualized in a responsive web dashboard.
-                </p>
-              </div>
+          <div class="about-copy">
+            <p class="statement reveal">
+              A full-stack developer who likes owning the whole path, from the
+              <em>screen in your hand</em> to the <em>service that answers it</em>.
+            </p>
+            <div class="about-cols reveal">
+              <p>
+                I'm currently at AU Small Finance Bank, where I build
+                cross-platform applications with Flutter and Dart and scalable
+                microservices in Golang and Spring Boot, and wire things like
+                Zoom SDK and Firebase into real-world systems.
+              </p>
+              <p>
+                Before that I led full-stack mobile app development, co-founded
+                a startup (AtomDrop), interned at Fidelity Investments and
+                Samsung PRISM, and built AI-integrated projects like real-time
+                digital twins and 3D virtual assistants.
+              </p>
             </div>
 
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3">
-                  <i class="bi bi-person-video3"></i>
-                </div>
-                <h2 class="w-title">3D Virtual Assistant</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">GenAI + 3D Model</span> /
-                  <span class="w-date">2023</span>
-                </div>
-                <p>
-                  Integrated a 3D avatar with GenAI for intelligent onboarding
-                  of patients at SRM Global Hospital using voice and chat.
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3"><i class="bi bi-vr"></i></div>
-                <h2 class="w-title">Immersive STEM Learning</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">VR + GameDev</span> /
-                  <span class="w-date">2022</span>
-                </div>
-                <p>
-                  Developed educational VR environments to teach physics and
-                  chemistry via immersive simulations and gameplay.
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3"><i class="bi bi-mic-fill"></i></div>
-                <h2 class="w-title">Voice Chat Engine</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">Unreal Engine + C++</span> /
-                  <span class="w-date">2023</span>
-                </div>
-                <p>
-                  Built a multiplayer voice chat module with avatar
-                  customization and voice-to-lip sync for 3D characters in
-                  games.
-                </p>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="work-box text-center py-4">
-                <div class="display-4 mb-3"><i class="bi bi-globe2"></i></div>
-                <h2 class="w-title">Quantum Info Website</h2>
-                <div class="w-more mb-2">
-                  <span class="w-ctegory">Web Development</span> /
-                  <span class="w-date">2022</span>
-                </div>
-                <p>
-                  Designed and developed SRM’s Quantum Center of Excellence
-                  official website for academic and public outreach.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Portfolio Section -->
-
-      <!-- ======= Achievements Section with Carousel ======= -->
-      <div
-        class="testimonials paralax-mf bg-image"
-        style="background-image: url(assets/img/overlay-bg.jpg)"
-      >
-        <div class="overlay-mf"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title-box text-center">
-                <h3 class="title-a" style="color: #0d6efd">Achievements</h3>
-                <p class="subtitle-a">
-                  Recognitions and milestones that reflect my journey.
-                </p>
-                <div class="line-mf"></div>
-              </div>
-
-              <div
-                class="testimonials-slider swiper"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <div class="testimonial-box">
-                      <h4 class="text-white mb-3">Academic & Hackathon Wins</h4>
-                      <ul class="list-group list-group-flush text-white">
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          🏆 First Prize – ProjectExpo24’ at SRM Networking
-                          Dept.
-                        </li>
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          🥈 Runner-up – HackRX 4.0 by Bajaj Finserv (2023)
-                        </li>
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          🥇 Winner – AR/VR Expo 2022 by ACM-W, Chennai Chapter
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <div class="testimonial-box">
-                      <h4 class="text-white mb-3">
-                        Industry Recognition & Certificates
-                      </h4>
-                      <ul class="list-group list-group-flush text-white">
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          🌟 Star Award – Video Call Module Integration, AU
-                          Small Finance Bank
-                        </li>
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          🎯 Rising Star – Tech Titans 3.0, AU Small Finance
-                          Bank
-                        </li>
-                        <li
-                          class="list-group-item bg-transparent border-light text-white"
-                        >
-                          📜 Samsung PRISM – Research Completion Certificate
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Achievements Section -->
-
-      <!-- ======= Contact Section ======= -->
-      <section
-        id="contact"
-        class="paralax-mf footer-paralax bg-image sect-mt4 route"
-        style="background-image: url(assets/img/overlay-bg.jpg)"
-      >
-        <div class="overlay-mf"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="contact-mf">
-                <div id="contact" class="box-shadow-full">
-                  <div class="row">
-                    <!-- Form to Compose Email -->
-                    <div class="col-md-6">
-                      <div class="title-box-2">
-                        <h5 class="title-left">Send Me a Message</h5>
-                      </div>
-                      <div>
-                        <form onsubmit="sendMail(event)">
-                          <div class="row">
-                            <div class="col-md-12 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="user-name"
-                                placeholder="Your Name"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-12 mb-3">
-                              <input
-                                type="email"
-                                class="form-control"
-                                id="user-email"
-                                placeholder="Your Email"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-12 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="user-subject"
-                                placeholder="Subject"
-                                required
-                              />
-                            </div>
-                            <div class="col-md-12 mb-3">
-                              <textarea
-                                class="form-control"
-                                rows="5"
-                                id="user-message"
-                                placeholder="Your Message"
-                                required
-                              ></textarea>
-                            </div>
-                            <div class="col-md-12 text-center">
-                              <button
-                                type="submit"
-                                class="button button-a button-big button-rouded"
-                              >
-                                Send via Email
-                              </button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="col-md-6">
-                      <div class="title-box-2 pt-4 pt-md-0">
-                        <h5 class="title-left">Get in Touch</h5>
-                      </div>
-                      <div class="more-info">
-                        <p class="lead">
-                          Whether you're looking to collaborate or just want to
-                          chat tech — feel free to drop me a message. This form
-                          will open your default email app with your message
-                          prefilled.
-                        </p>
-                        <ul class="list-ico">
-                          <li>
-                            <span class="bi bi-geo-alt"></span> Bengaluru, India
-                          </li>
-                          <li>
-                            <span class="bi bi-phone"></span> (+91) 96940-18045
-                          </li>
-                          <li>
-                            <span class="bi bi-envelope"></span>
-                            <a href="mailto:singhvedant1701@gmail.com"
-                              >singhvedant1701@gmail.com</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="socials">
-                        <ul>
-                          <li>
-                            <a
-                              href="https://github.com/singhvedant"
-                              target="_blank"
-                              ><span class="ico-circle"
-                                ><i class="bi bi-github"></i></span
-                            ></a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.instagram.com/vedant_s._/"
-                              target="_blank"
-                              ><span class="ico-circle"
-                                ><i class="bi bi-instagram"></i></span
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="https://twitter.com/" target="_blank"
-                              ><span class="ico-circle"
-                                ><i class="bi bi-twitter"></i></span
-                            ></a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.linkedin.com/in/vedant-singh-3284071b8/"
-                              target="_blank"
-                              ><span class="ico-circle"
-                                ><i class="bi bi-linkedin"></i></span
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <!-- End Contact Info -->
-                  </div>
-                </div>
-              </div>
-            </div>
+            <dl class="stats reveal">
+              <div><dt>Projects built</dt><dd data-count="12">12</dd></div>
+              <div><dt>Tech stacks</dt><dd data-count="7">7</dd></div>
+              <div><dt>Awards &amp; certifications</dt><dd data-count="6">6</dd></div>
+              <div><dt>Years of experience</dt><dd data-count="3">3</dd></div>
+            </dl>
           </div>
         </div>
       </section>
 
-      <script>
-        function sendMail(event) {
-          event.preventDefault();
+      <!-- ───────────── Stack ───────────── -->
+      <section class="section wrap" id="stack">
+        <header class="section-head reveal">
+          <p class="eyebrow"><span class="num">02</span> Stack</p>
+          <h2>Full stack, <em>literally.</em></h2>
+          <p class="section-sub">Four layers I work in. Pick one.</p>
+        </header>
 
-          const name = document.getElementById("user-name").value;
-          const email = document.getElementById("user-email").value;
-          const subject = document.getElementById("user-subject").value;
-          const message = document.getElementById("user-message").value;
+        <div class="stack-grid">
+          <div class="iso-scene reveal" aria-hidden="true">
+            <div class="iso" id="iso">
+              <div class="plate" data-layer="3"><span>04 Devices</span></div>
+              <div class="plate" data-layer="2"><span>03 Intelligence</span></div>
+              <div class="plate" data-layer="1"><span>02 Services</span></div>
+              <div class="plate" data-layer="0"><span>01 Interface</span></div>
+            </div>
+          </div>
 
-          const mailtoLink = `mailto:singhvedant1701@gmail.com?subject=${encodeURIComponent(
-            subject
-          )}&body=${encodeURIComponent(
-            `Hi Vedant,\n\nMy name is ${name} (${email}).\n\n${message}\n\nRegards,\n${name}`
-          )}`;
+          <ol class="layers" id="layers">
+            <li class="layer is-active reveal" data-layer="0">
+              <button type="button" aria-expanded="true">
+                <span class="layer-num">01</span>
+                <span class="layer-title">Interface</span>
+                <span class="layer-hint">Mobile &amp; web</span>
+              </button>
+              <div class="layer-body">
+                <div>
+                  <p>
+                    Multiple cross-platform apps shipped with Flutter and Dart,
+                    with Firebase integration and production-grade UI. Dynamic,
+                    responsive web front ends in ReactJS.
+                  </p>
+                  <ul class="tags">
+                    <li>Flutter</li><li>Dart</li><li>ReactJS</li><li>JavaScript</li><li>Kotlin</li><li>Firebase</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="layer reveal" data-layer="1">
+              <button type="button" aria-expanded="false">
+                <span class="layer-num">02</span>
+                <span class="layer-title">Services</span>
+                <span class="layer-hint">Backend &amp; infra</span>
+              </button>
+              <div class="layer-body">
+                <div>
+                  <p>
+                    Scalable Golang microservices built for performance and
+                    maintainability, plus reactive and RESTful Java services
+                    with Spring Boot WebFlux and JPA, deployed with Docker and
+                    Kubernetes in enterprise settings.
+                  </p>
+                  <ul class="tags">
+                    <li>Golang</li><li>Spring Boot</li><li>WebFlux</li><li>JPA</li><li>Python</li><li>Docker</li><li>Kubernetes</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="layer reveal" data-layer="2">
+              <button type="button" aria-expanded="false">
+                <span class="layer-num">03</span>
+                <span class="layer-title">Intelligence</span>
+                <span class="layer-hint">AI &amp; GenAI</span>
+              </button>
+              <div class="layer-body">
+                <div>
+                  <p>
+                    LLM integrations and GenAI-powered data analysis tools for
+                    business insight extraction and automation workflows, and
+                    AI agents that drive real-time simulations.
+                  </p>
+                  <ul class="tags">
+                    <li>LLM integration</li><li>GenAI</li><li>AI agents</li><li>Python</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="layer reveal" data-layer="3">
+              <button type="button" aria-expanded="false">
+                <span class="layer-num">04</span>
+                <span class="layer-title">Devices</span>
+                <span class="layer-hint">IoT, 3D &amp; real-time</span>
+              </button>
+              <div class="layer-body">
+                <div>
+                  <p>
+                    IoT prototypes on Raspberry Pi and Arduino with real-time
+                    data pipelines, automation and control interfaces. VR
+                    environments and multiplayer voice in Unreal Engine and C++.
+                  </p>
+                  <ul class="tags">
+                    <li>Raspberry Pi</li><li>Arduino</li><li>Unreal Engine</li><li>C / C++</li><li>VR</li><li>Zoom SDK</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
 
-          window.location.href = mailtoLink;
-        }
-      </script>
-      <!-- End Contact Section -->
+      <!-- ───────────── Work ───────────── -->
+      <section class="section wrap" id="work">
+        <header class="section-head reveal">
+          <p class="eyebrow"><span class="num">03</span> Work</p>
+          <h2>Things I've built <em>and led.</em></h2>
+        </header>
+
+        <div class="work-grid">
+          <article class="card reveal">
+            <div class="card-art art-twin" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <g class="twin-a"><path d="M40 46 70 30l30 16-30 16zM40 46v34l30 16V62M100 46v34L70 96" /></g>
+                <g class="twin-b"><path d="M100 46l30-16 30 16-30 16zM100 46v34l30 16V62M160 46v34l-30 16" /></g>
+                <path class="pulse" d="M70 62h60" />
+              </svg>
+            </div>
+            <p class="card-meta"><span>AI + IoT</span><span>2024</span></p>
+            <h3>Digital Twin Simulator</h3>
+            <p>Real-time factory simulation driven by sensor data and controlled by an AI agent, visualised in a responsive web dashboard.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-art art-avatar" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <circle cx="78" cy="48" r="20" />
+                <path d="M46 104c2-20 14-30 32-30s30 10 32 30" />
+                <g class="bars"><path d="M128 44v20" /><path d="M138 34v40" /><path d="M148 42v24" /><path d="M158 30v48" /><path d="M168 46v16" /></g>
+              </svg>
+            </div>
+            <p class="card-meta"><span>GenAI + 3D model</span><span>2023</span></p>
+            <h3>3D Virtual Assistant</h3>
+            <p>A 3D avatar paired with GenAI for intelligent patient onboarding at SRM Global Hospital, over voice and chat.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-art art-phone" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <rect x="76" y="12" width="48" height="96" rx="8" />
+                <path d="M94 20h12" />
+                <g class="bars"><path d="M88 88V70" /><path d="M96 88V56" /><path d="M104 88V64" /><path d="M112 88V46" /></g>
+                <path class="arc" d="M138 44a22 22 0 0 1 0 32M148 34a36 36 0 0 1 0 52M62 44a22 22 0 0 0 0 32M52 34a36 36 0 0 0 0 52" />
+              </svg>
+            </div>
+            <p class="card-meta"><span>Flutter + Firebase</span><span>2023</span></p>
+            <h3>NCACCH Connect</h3>
+            <p>Cloud-based Android and iOS app for NCACCH Australia with real-time reporting, data integration and a Firebase backend.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-art art-voice" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <g class="bars">
+                  <path d="M40 52v16" /><path d="M52 40v40" /><path d="M64 30v60" /><path d="M76 44v32" /><path d="M88 20v80" /><path d="M100 36v48" /><path d="M112 26v68" /><path d="M124 46v28" /><path d="M136 34v52" /><path d="M148 48v24" /><path d="M160 54v12" />
+                </g>
+              </svg>
+            </div>
+            <p class="card-meta"><span>Unreal Engine + C++</span><span>2023</span></p>
+            <h3>Voice Chat Engine</h3>
+            <p>Multiplayer voice chat module with avatar customisation and voice-to-lip sync for 3D characters in games.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-art art-atom" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <g class="orbits">
+                  <ellipse cx="100" cy="60" rx="52" ry="18" />
+                  <ellipse cx="100" cy="60" rx="52" ry="18" transform="rotate(60 100 60)" />
+                  <ellipse cx="100" cy="60" rx="52" ry="18" transform="rotate(120 100 60)" />
+                </g>
+                <circle class="core" cx="100" cy="60" r="5" />
+              </svg>
+            </div>
+            <p class="card-meta"><span>VR + game dev</span><span>2022</span></p>
+            <h3>Immersive STEM Learning</h3>
+            <p>Educational VR environments that teach physics and chemistry through immersive simulations and gameplay.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-art art-qubit" aria-hidden="true">
+              <svg viewBox="0 0 200 120">
+                <circle cx="100" cy="60" r="44" />
+                <ellipse cx="100" cy="60" rx="44" ry="13" />
+                <path d="M100 10v100" class="dash" />
+                <g class="state"><path d="M100 60 128 26" /><circle class="core" cx="128" cy="26" r="4" /></g>
+              </svg>
+            </div>
+            <p class="card-meta"><span>Web development</span><span>2022</span></p>
+            <h3>Quantum Info Website</h3>
+            <p>Designed and developed the official website of SRM's Quantum Center of Excellence for academic and public outreach.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ───────────── Path ───────────── -->
+      <section class="section wrap" id="path">
+        <header class="section-head reveal">
+          <p class="eyebrow"><span class="num">04</span> Path</p>
+          <h2>Where I've been, <em>what it earned.</em></h2>
+        </header>
+
+        <div class="path-grid">
+          <div>
+            <h3 class="list-title reveal">Experience</h3>
+            <ul class="rows">
+              <li class="reveal"><span class="row-main">AU Small Finance Bank</span><span class="row-sub">Full-stack developer</span><span class="row-tag now">Now</span></li>
+              <li class="reveal"><span class="row-main">AtomDrop</span><span class="row-sub">Co-founder</span><span class="row-tag">Startup</span></li>
+              <li class="reveal"><span class="row-main">Fidelity Investments</span><span class="row-sub">Intern</span><span class="row-tag">Internship</span></li>
+              <li class="reveal"><span class="row-main">Samsung PRISM</span><span class="row-sub">Intern</span><span class="row-tag">Internship</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="list-title reveal">Recognition</h3>
+            <ul class="rows">
+              <li class="reveal"><span class="row-main">Star Award</span><span class="row-sub">Video call module integration, AU Small Finance Bank</span><span class="row-tag">Industry</span></li>
+              <li class="reveal"><span class="row-main">Rising Star</span><span class="row-sub">Tech Titans 3.0, AU Small Finance Bank</span><span class="row-tag">Industry</span></li>
+              <li class="reveal"><span class="row-main">First Prize</span><span class="row-sub">ProjectExpo'24, SRM Networking Dept.</span><span class="row-tag">2024</span></li>
+              <li class="reveal"><span class="row-main">Runner-up</span><span class="row-sub">HackRX 4.0 by Bajaj Finserv</span><span class="row-tag">2023</span></li>
+              <li class="reveal"><span class="row-main">Winner</span><span class="row-sub">AR/VR Expo by ACM-W, Chennai Chapter</span><span class="row-tag">2022</span></li>
+              <li class="reveal"><span class="row-main">Research Certificate</span><span class="row-sub">Samsung PRISM</span><span class="row-tag">Research</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────── Contact ───────────── -->
+      <section class="section contact" id="contact">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <p class="eyebrow"><span class="num">05</span> Contact</p>
+          </header>
+
+          <h2 class="contact-title reveal">Let's build <em>something.</em></h2>
+
+          <div class="contact-grid">
+            <div class="contact-info reveal">
+              <p>
+                Whether you're looking to collaborate or just want to chat
+                tech, drop me a message.
+              </p>
+              <button class="email-copy" id="copy-email" type="button" data-email="singhvedant1701@gmail.com">
+                <span class="email-text">singhvedant1701@gmail.com</span>
+                <span class="email-hint" aria-live="polite">Click to copy</span>
+              </button>
+              <ul class="contact-list">
+                <li><span>Phone</span><a href="tel:+919694018045">(+91) 96940 18045</a></li>
+                <li><span>Based in</span>Bengaluru, India</li>
+              </ul>
+              <ul class="socials">
+                <li><a href="https://github.com/singhvedant" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://www.linkedin.com/in/vedant-singh-3284071b8/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://www.instagram.com/vedant_s._/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+
+            <form class="contact-form reveal" id="contact-form">
+              <div class="field">
+                <label for="user-name">Name</label>
+                <input type="text" id="user-name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="user-email">Email</label>
+                <input type="email" id="user-email" name="email" autocomplete="email" required />
+              </div>
+              <div class="field field-full">
+                <label for="user-subject">Subject</label>
+                <input type="text" id="user-subject" name="subject" required />
+              </div>
+              <div class="field field-full">
+                <label for="user-message">Message</label>
+                <textarea id="user-message" name="message" rows="5" required></textarea>
+              </div>
+              <div class="form-foot field-full">
+                <p>Opens your email app with the message filled in.</p>
+                <button class="btn btn-solid" type="submit">
+                  Send via email
+                  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
-    <!-- End #main -->
 
-    <div id="preloader"></div>
-    <a
-      href="#"
-      class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    <footer class="foot wrap">
+      <span>© <span id="year">2026</span> Vedant Singh</span>
+      <a href="#hero">Back to top ↑</a>
+    </footer>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- ───────────── Command palette ───────────── -->
+    <dialog class="palette" id="palette" aria-label="Jump to">
+      <div class="palette-box">
+        <input
+          id="palette-input"
+          type="text"
+          placeholder="Where to?"
+          autocomplete="off"
+          spellcheck="false"
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="palette-list"
+          aria-autocomplete="list"
+        />
+        <ul id="palette-list" role="listbox"></ul>
+        <p class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> go</span><span><kbd>esc</kbd> close</span></p>
+      </div>
+    </dialog>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/site.js" defer></script>
   </body>
 </html>
