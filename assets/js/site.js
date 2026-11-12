@@ -66,7 +66,7 @@
         var end = +e.target.dataset.count, t0 = performance.now(), dur = 1100;
         (function tick(now) {
           var p = Math.min(1, (now - t0) / dur);
-          e.target.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          e.target.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + (e.target.dataset.suffix || "");
           if (p < 1) requestAnimationFrame(tick);
         })(t0);
       });
@@ -89,7 +89,7 @@
 
   /* ───────────── Typed rotator ───────────── */
   var rotEl = $("#rotator-text");
-  var words = ["Flutter", "Golang", "Spring Boot", "AI integrator", "full-stack developer", "innovator"];
+  var words = ["prototype", "build", "deploy", "update", "repeat"];
   if (!reduceMotion) {
     var wi = 0, ci = words[0].length, deleting = true;
     setTimeout(function loop() {
@@ -107,28 +107,67 @@
   }
 
   /* ───────────── Stack layers ───────────── */
-  var layers = $$("#layers .layer"), plates = $$("#iso .plate");
+  // When the section is pinned, scroll position picks the layer; otherwise click or hover does.
+  var stackSec = $("#stack"), layers = $$("#layers .layer"), plates = $$("#iso .plate");
+  var steps = $$(".stack-step", stackSec), meter = $(".stack-meter", stackSec);
+  var pinMQ = window.matchMedia("(min-height: 620px)");
+  var activeLayer = -1;
   function activateLayer(n) {
+    n = +n;
+    if (n === activeLayer) return;
+    activeLayer = n;
     layers.forEach(function (l) {
-      var on = l.dataset.layer === String(n);
+      var on = +l.dataset.layer === n;
       l.classList.toggle("is-active", on);
       $("button", l).setAttribute("aria-expanded", on ? "true" : "false");
     });
     plates.forEach(function (p) {
-      p.classList.toggle("is-active", p.dataset.layer === String(n));
+      p.classList.toggle("is-active", +p.dataset.layer === n);
       // Plates above the active one lift away so it is never hidden.
-      p.style.setProperty("--lift", +p.dataset.layer < +n ? 1 : 0);
+      p.style.setProperty("--lift", +p.dataset.layer < n ? 1 : 0);
     });
+    if (meter) {
+      $("b", meter).textContent = ("0" + (n + 1)).slice(-2);
+      meter.style.setProperty("--sp", layers.length > 1 ? n / (layers.length - 1) : 1);
+    }
+  }
+  function syncStackToScroll() {
+    if (!pinMQ.matches || !steps.length) return;
+    // The step marker nearest the top of the screen decides the layer.
+    var best = 0, bestD = Infinity;
+    steps.forEach(function (m, i) {
+      var d = Math.abs(m.getBoundingClientRect().top);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    activateLayer(best);
   }
   layers.forEach(function (l) {
-    var n = l.dataset.layer, btn = $("button", l);
-    btn.addEventListener("click", function () { activateLayer(n); });
-    btn.addEventListener("focus", function () { activateLayer(n); });
+    var n = +l.dataset.layer, btn = $("button", l);
+    btn.addEventListener("click", function () {
+      if (pinMQ.matches && steps[n]) {
+        window.scrollTo({ top: window.scrollY + steps[n].getBoundingClientRect().top, behavior: reduceMotion ? "auto" : "smooth" });
+      } else {
+        activateLayer(n);
+      }
+    });
     if (window.matchMedia("(hover: hover)").matches) {
-      l.addEventListener("pointerenter", function () { activateLayer(n); });
+      l.addEventListener("pointerenter", function () { if (!pinMQ.matches) activateLayer(n); });
     }
   });
   activateLayer(0);
+
+  /* ───────────── Scroll-linked updates (one per frame) ───────────── */
+  var progressBar = $(".progress"), ticking = false;
+  function onFrame() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar) progressBar.style.setProperty("--p", max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    syncStackToScroll();
+  }
+  function requestFrame() { if (!ticking) { ticking = true; requestAnimationFrame(onFrame); } }
+  window.addEventListener("scroll", requestFrame, { passive: true });
+  window.addEventListener("resize", requestFrame);
+  onFrame();
 
   /* ───────────── Card spotlight ───────────── */
   $$(".card").forEach(function (card) {
@@ -195,7 +234,9 @@
   var commands = [
     { label: "About", hint: "Section", run: go("#about") },
     { label: "Stack", hint: "Section", run: go("#stack") },
+    { label: "Method — how I work", hint: "Section", run: go("#method") },
     { label: "Work", hint: "Section", run: go("#work") },
+    { label: "Roots — where I come from", hint: "Section", run: go("#roots") },
     { label: "Path — experience & recognition", hint: "Section", run: go("#path") },
     { label: "Contact", hint: "Section", run: go("#contact") },
     { label: "Back to top", hint: "Section", run: go("#hero") },
